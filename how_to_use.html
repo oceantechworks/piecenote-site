@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PieceNote - このアプリの使い方</title>
+  <meta name="description" content="PieceNote の基本構造（ノート＞ページ＞メモ）や、ノート・ページ・メモの操作方法をまとめた使い方ページです。" />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#111827;
+      --muted:#6b7280;
+      --border:#e5e7eb;
+      --card:#f9fafb;
+      --accent:#16a34a; /* PieceNoteっぽく少しグリーン寄せ */
+      --code:#0f172a;
+      --shadow: 0 6px 24px rgba(0,0,0,.06);
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+        "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
+      line-height:1.8;
+      background:var(--bg);
+      color:var(--text);
+    }
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    header{
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(22,163,74,.10), transparent);
+    }
+    .wrap{
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px 16px;
+    }
+    .title{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .badge{
+      display:inline-block;
+      font-size: 12px;
+      color: var(--accent);
+      border: 1px solid rgba(22,163,74,.35);
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(22,163,74,.08);
+    }
+    h1{
+      font-size: 26px;
+      margin: 0;
+      letter-spacing: .2px;
+    }
+    .subtitle{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    main{ padding: 10px 0 42px; }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 18px;
+      box-shadow: var(--shadow);
+      margin: 16px 0;
+    }
+    h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    h2 .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(22,163,74,.15);
+    }
+
+    p{ margin: 10px 0; }
+    ul{
+      margin: 10px 0 0 1.2em;
+      padding: 0;
+    }
+    li{ margin: 6px 0; }
+    strong{ font-weight: 700; }
+
+    hr{
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 18px 0;
+    }
+
+    .note{
+      border-left: 4px solid var(--accent);
+      padding: 10px 12px;
+      background: rgba(22,163,74,.07);
+      border-radius: 10px;
+      color: var(--text);
+    }
+
+    footer{
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      color: var(--code);
+      background: rgba(148,163,184,.18);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="title">
+        <span class="badge">Help</span>
+        <h1>PieceNote - このアプリの使い方</h1>
+      </div>
+      <p class="subtitle">ノート／ページ／メモの基本構造と、各操作の手順をまとめています。</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="card" id="about">
+      <h2><span class="dot"></span>💡 <strong>PieceNote とは？</strong></h2>
+
+      <p>PieceNote は、アイディアの「かけら（Piece）」を集めて「ノート（Note）」として形づくるアプリです。</p>
+
+      <p>最初に分類を決める必要はありません。まずは「メモプール」に書きためて、あとから整理していく──</p>
+
+      <p>あるいは、最初から特定のノートの特定のページに書いていく──</p>
+
+      <p>どちらの使い方も自由にできます。</p>
+    </section>
+
+    <section class="card" id="structure">
+      <h2><span class="dot"></span>🏗️ <strong>基本構造</strong></h2>
+
+      <p>PieceNote は次の「3つの層」で成り立っています。</p>
+
+      <p class="note"><strong>ノート　＞　ページ　＞　メモ</strong></p>
+
+      <p>一冊のノートに複数のページがあり、ページの中に自由にメモを配置するイメージです。</p>
+
+      <hr />
+
+      <p><strong>そして、メモプール ──</strong></p>
+
+      <p>
+        PieceNote には、どのノートにも属さない特別な領域である「メモプール」があります。
+      </p>
+
+      <p>
+        どのノートを開いても必ず左端に表示される「共通のハブ」であり、ここにあるメモは、
+        どのノート・どのページにも自由に移動できます。
+      </p>
+    </section>
+
+    <section class="card" id="drawer">
+      <h2><span class="dot"></span><strong>ノートの管理（Drawer）</strong></h2>
+
+      <p>左上の「三本線」をタップすると Drawer が開きます。</p>
+      <p>ここでは以下の操作ができます：</p>
+
+      <ul>
+        <li>ノートを<strong>新規作成</strong>（＋）</li>
+        <li>ノート右端のハンドルをドラッグ → <strong>並べ替え</strong></li>
+        <li>
+          ノートを長押し → 1つまたは複数選択
+          <ul>
+            <li>編集アイコン → <strong>編集</strong></li>
+            <li>ゴミ箱アイコン → <strong>削除</strong></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card" id="tabs">
+      <h2><span class="dot"></span><strong>ページの管理（タブバー）</strong></h2>
+
+      <ul>
+        <li>ノートを開くと、上部にタブバーが表示されます。ここにページを追加していきます。</li>
+        <li>
+          右上の三点メニュー → ページの<strong>作成 / 編集 / 並べ替え / 削除</strong><br />
+          （<span class="mono">メモを選択していない状態で</span> 三点メニューをタップ）
+        </li>
+      </ul>
+    </section>
+
+    <section class="card" id="memos">
+      <h2><span class="dot"></span><strong>メモの管理</strong></h2>
+
+      <p>作成したページやメモプールの画面では、メモに対して次の操作ができます：</p>
+
+      <ul>
+        <li>右下の丸いボタン → <strong>新規メモ</strong>の追加</li>
+        <li>メモをタップ → メモの内容を<strong>編集</strong></li>
+        <li>右端のドラッグハンドル → <strong>並べ替え</strong>（ドラッグハンドルを長押しする必要はありません）</li>
+        <li>
+          メモ長押し → 1つまたは複数選択
+          <div class="note" style="margin-top:10px;">
+            <strong>メモ選択状態で</strong>右上の三点メニューから：
+            <ul>
+              <li><strong>移動</strong>（メモを他のページへ移動）</li>
+              <li><strong>結合</strong>（複数選択したメモを一つのメモにまとめる）</li>
+              <li><strong>削除</strong>（削除されたメモはゴミ箱に移動）</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>© OceanTechWorks / PieceNote</div>
+    </div>
+  </footer>
+</body>
+</html>
