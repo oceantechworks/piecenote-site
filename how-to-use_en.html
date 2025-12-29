@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PieceNote - How to Use</title>
+  <meta name="description" content="Learn the basic structure of PieceNote (Notes > Pages > Memos) and how to manage notes, pages, and memos." />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#111827;
+      --muted:#6b7280;
+      --border:#e5e7eb;
+      --card:#f9fafb;
+      --accent:#16a34a;
+      --code:#0f172a;
+      --shadow: 0 6px 24px rgba(0,0,0,.06);
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      line-height:1.8;
+      background:var(--bg);
+      color:var(--text);
+    }
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    header{
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(22,163,74,.10), transparent);
+    }
+    .wrap{
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px 16px;
+    }
+    .title{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .badge{
+      display:inline-block;
+      font-size: 12px;
+      color: var(--accent);
+      border: 1px solid rgba(22,163,74,.35);
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(22,163,74,.08);
+    }
+    h1{
+      font-size: 26px;
+      margin: 0;
+      letter-spacing: .2px;
+    }
+    .subtitle{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    main{ padding: 10px 0 42px; }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 18px;
+      box-shadow: var(--shadow);
+      margin: 16px 0;
+    }
+    h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    h2 .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(22,163,74,.15);
+    }
+
+    p{ margin: 10px 0; }
+    ul{
+      margin: 10px 0 0 1.2em;
+      padding: 0;
+    }
+    li{ margin: 6px 0; }
+    strong{ font-weight: 700; }
+
+    hr{
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 18px 0;
+    }
+
+    .note{
+      border-left: 4px solid var(--accent);
+      padding: 10px 12px;
+      background: rgba(22,163,74,.07);
+      border-radius: 10px;
+      color: var(--text);
+    }
+
+    footer{
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      color: var(--code);
+      background: rgba(148,163,184,.18);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="title">
+        <span class="badge">Help</span>
+        <h1>PieceNote - How to Use</h1>
+      </div>
+      <p class="subtitle">
+        An overview of the Notes / Pages / Memos structure and how to use each feature.
+      </p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="card" id="about">
+      <h2><span class="dot"></span>💡 <strong>What is PieceNote?</strong></h2>
+
+      <p>
+        PieceNote is an app for collecting small pieces of ideas and shaping them into meaningful notes.
+      </p>
+
+      <p>
+        You don’t need to decide on a structure right away.
+        Start by writing freely in the <strong>MemoPool</strong>, and organize everything later—
+      </p>
+
+      <p>
+        or begin by writing directly on a specific page of a specific note.
+      </p>
+
+      <p>
+        Both styles are fully supported.
+      </p>
+    </section>
+
+    <section class="card" id="structure">
+      <h2><span class="dot"></span>🏗️ <strong>Basic Structure</strong></h2>
+
+      <p>PieceNote is built on three simple layers:</p>
+
+      <p class="note"><strong>Notes &nbsp;>&nbsp; Pages &nbsp;>&nbsp; Memos</strong></p>
+
+      <p>
+        Think of a note as a notebook, pages as sections inside it,
+        and memos as individual pieces of content placed freely on each page.
+      </p>
+
+      <hr />
+
+      <p><strong>And the MemoPool —</strong></p>
+
+      <p>
+        PieceNote includes a special space called the <strong>MemoPool</strong>,
+        which does not belong to any specific note.
+      </p>
+
+      <p>
+        It acts as a shared hub that always appears on the far left.
+        Memos in the MemoPool can be moved freely to any note or page.
+      </p>
+    </section>
+
+    <section class="card" id="drawer">
+      <h2><span class="dot"></span><strong>Managing Notes (Drawer)</strong></h2>
+
+      <p>
+        Tap the three-line icon in the top-left corner to open the drawer.
+      </p>
+      <p>You can do the following here:</p>
+
+      <ul>
+        <li>Create a <strong>new note</strong> (+)</li>
+        <li>Drag the handle on the right to <strong>reorder notes</strong></li>
+        <li>
+          Long-press a note to select one or more:
+          <ul>
+            <li>Edit icon → <strong>Edit</strong></li>
+            <li>Trash icon → <strong>Delete</strong></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card" id="tabs">
+      <h2><span class="dot"></span><strong>Managing Pages (Tab Bar)</strong></h2>
+
+      <ul>
+        <li>
+          When a note is open, pages appear in the tab bar at the top.
+        </li>
+        <li>
+          Tap the three-dot menu in the top-right to
+          <strong>Create / Edit / Reorder / Delete</strong> pages<br />
+          (Tap the menu <span class="mono">when no memos are selected</span>)
+        </li>
+      </ul>
+    </section>
+
+    <section class="card" id="memos">
+      <h2><span class="dot"></span><strong>Managing Memos</strong></h2>
+
+      <p>
+        On pages or in the MemoPool, you can perform the following actions on memos:
+      </p>
+
+      <ul>
+        <li>Tap the round button in the bottom-right to <strong>add a new memo</strong></li>
+        <li>Tap a memo to <strong>edit</strong> its content</li>
+        <li>
+          Drag the handle on the right to <strong>reorder</strong> memos
+          (no long-press required)
+        </li>
+        <li>
+          Long-press a memo to select one or more
+          <div class="note" style="margin-top:10px;">
+            From the three-dot menu <strong>while memos are selected</strong>:
+            <ul>
+              <li><strong>Move</strong> — move memos to another page</li>
+              <li><strong>Merge</strong> — combine multiple memos into one</li>
+              <li><strong>Delete</strong> — deleted memos are moved to the trash</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>© OceanTechWorks / PieceNote</div>
+    </div>
+  </footer>
+</body>
+</html>
