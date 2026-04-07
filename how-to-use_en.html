@@ -1,262 +1,403 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PieceNote - How to Use</title>
-  <meta name="description" content="Learn the basic structure of PieceNote (Notes > Pages > Memos) and how to manage notes, pages, and memos." />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Use PieceNote</title>
   <style>
-    :root{
-      --bg:#ffffff;
-      --text:#111827;
-      --muted:#6b7280;
-      --border:#e5e7eb;
-      --card:#f9fafb;
-      --accent:#16a34a;
-      --code:#0f172a;
-      --shadow: 0 6px 24px rgba(0,0,0,.06);
+    :root {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --surface-soft: #f1f4f7;
+      --text: #1f2937;
+      --muted: #5b6472;
+      --accent: #0f766e;
+      --accent-soft: #dff4f1;
+      --border: #d9e0e7;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max-width: 920px;
     }
 
-    *{ box-sizing: border-box; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif;
-      line-height:1.8;
-      background:var(--bg);
-      color:var(--text);
+    * {
+      box-sizing: border-box;
     }
-    a{ color: var(--accent); text-decoration: none; }
-    a:hover{ text-decoration: underline; }
 
-    header{
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(22,163,74,.10), transparent);
+    html {
+      scroll-behavior: smooth;
     }
-    .wrap{
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 28px 16px;
-    }
-    .title{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-    .badge{
-      display:inline-block;
-      font-size: 12px;
-      color: var(--accent);
-      border: 1px solid rgba(22,163,74,.35);
-      padding: 3px 10px;
-      border-radius: 999px;
-      background: rgba(22,163,74,.08);
-    }
-    h1{
-      font-size: 26px;
+
+    body {
       margin: 0;
-      letter-spacing: .2px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.8;
+      color: var(--text);
+      background: linear-gradient(180deg, #f8fafc 0%, #eef4f7 100%);
     }
-    .subtitle{
-      margin: 8px 0 0;
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 56px 0 24px;
+    }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 5vw, 44px);
+      line-height: 1.25;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 17px;
+      color: var(--muted);
+    }
+
+    .toc {
+      margin: 20px 0 40px;
+    }
+
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .toc h2,
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: 24px;
+      line-height: 1.4;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px 18px;
+    }
+
+    .toc-list li a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .main {
+      padding-bottom: 56px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .section p {
+      margin: 0 0 16px;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    h3 {
+      margin: 28px 0 10px;
+      font-size: 19px;
+      line-height: 1.5;
+    }
+
+    ul {
+      margin: 12px 0 0 0;
+      padding-left: 1.4em;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .callout {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: var(--surface-soft);
+      border-left: 4px solid var(--accent);
+    }
+
+    .summary-list {
+      margin-top: 8px;
+    }
+
+    .footer {
+      padding: 12px 0 40px;
       color: var(--muted);
       font-size: 14px;
+      text-align: center;
     }
 
-    main{ padding: 10px 0 42px; }
-    .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px 18px;
-      box-shadow: var(--shadow);
-      margin: 16px 0;
-    }
-    h2{
-      margin: 0 0 10px;
-      font-size: 18px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    h2 .dot{
-      width:10px; height:10px; border-radius:50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(22,163,74,.15);
-    }
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 28px;
+      }
 
-    p{ margin: 10px 0; }
-    ul{
-      margin: 10px 0 0 1.2em;
-      padding: 0;
-    }
-    li{ margin: 6px 0; }
-    strong{ font-weight: 700; }
+      .hero-card,
+      .toc-card,
+      .section-card {
+        padding: 22px;
+      }
 
-    hr{
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 18px 0;
-    }
-
-    .note{
-      border-left: 4px solid var(--accent);
-      padding: 10px 12px;
-      background: rgba(22,163,74,.07);
-      border-radius: 10px;
-      color: var(--text);
-    }
-
-    footer{
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .mono{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      color: var(--code);
-      background: rgba(148,163,184,.18);
-      padding: 2px 6px;
-      border-radius: 6px;
+      .toc-list {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
-
 <body>
-  <header>
-    <div class="wrap">
-      <div class="title">
-        <span class="badge">Help</span>
-        <h1>PieceNote - How to Use</h1>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="eyebrow">PieceNote Guide</div>
+        <h1>How to Use PieceNote</h1>
+        <p class="lead">
+          PieceNote is an app where you create pages inside notes and organize your ideas by writing memos on those pages.
+          You can start writing first, then move, copy, and reorder your memos later.
+        </p>
       </div>
-      <p class="subtitle">
-        An overview of the Notes / Pages / Memos structure and how to use each feature.
-      </p>
     </div>
   </header>
 
-  <main class="wrap">
+  <section class="toc">
+    <div class="container">
+      <div class="toc-card">
+        <h2>Contents</h2>
+        <ul class="toc-list">
+          <li><a href="#about">What Is PieceNote?</a></li>
+          <li><a href="#concept">Basic Structure</a></li>
+          <li><a href="#screen">Understanding the Screen</a></li>
+          <li><a href="#start">Getting Started</a></li>
+          <li><a href="#edit">Editing Memos</a></li>
+          <li><a href="#organize">Organizing Memos</a></li>
+          <li><a href="#reorder">Reordering Items</a></li>
+          <li><a href="#inbox">Using Inbox</a></li>
+          <li><a href="#trash">About Trash</a></li>
+          <li><a href="#tips">Tips for Using PieceNote</a></li>
+          <li><a href="#summary">Summary</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <section class="card" id="about">
-      <h2><span class="dot"></span>💡 <strong>What is PieceNote?</strong></h2>
+  <main class="main">
+    <div class="container">
+      <section id="about" class="section">
+        <div class="section-card">
+          <h2>What Is PieceNote?</h2>
+          <p>
+            PieceNote is an app where you <strong>create pages inside notes and organize your information by writing memos on those pages</strong>.
+            It is designed for gradually collecting short memos and organizing them later by moving, copying, and reordering them.
+          </p>
+          <p>
+            Rather than forcing you to sort everything perfectly from the beginning, PieceNote is designed around a simple flow: <strong>write first, organize later</strong>.
+          </p>
+        </div>
+      </section>
 
-      <p>
-        PieceNote is an app for collecting small pieces of ideas and shaping them into meaningful notes.
-      </p>
+      <section id="concept" class="section">
+        <div class="section-card">
+          <h2>Basic Structure</h2>
+          <p>PieceNote organizes information in three levels.</p>
 
-      <p>
-        You don’t need to decide on a structure right away.
-        Start by writing freely in the <strong>MemoPool</strong>, and organize everything later—
-      </p>
+          <h3>Notes</h3>
+          <p>These are the main categories. You can use them for work, study, hobbies, journaling, and other broad themes.</p>
 
-      <p>
-        or begin by writing directly on a specific page of a specific note.
-      </p>
+          <h3>Pages</h3>
+          <p>Pages are smaller categories inside a note. They are useful when you want to divide a single note by topic, item, or purpose.</p>
 
-      <p>
-        Both styles are fully supported.
-      </p>
-    </section>
+          <h3>Memos</h3>
+          <p>Memos are the actual pieces of content you write. You can use them for ideas, records, drafts, reminders, and more.</p>
 
-    <section class="card" id="structure">
-      <h2><span class="dot"></span>🏗️ <strong>Basic Structure</strong></h2>
-
-      <p>PieceNote is built on three simple layers:</p>
-
-      <p class="note"><strong>Notes &nbsp;>&nbsp; Pages &nbsp;>&nbsp; Memos</strong></p>
-
-      <p>
-        Think of a note as a notebook, pages as sections inside it,
-        and memos as individual pieces of content placed freely on each page.
-      </p>
-
-      <hr />
-
-      <p><strong>And the MemoPool —</strong></p>
-
-      <p>
-        PieceNote includes a special space called the <strong>MemoPool</strong>,
-        which does not belong to any specific note.
-      </p>
-
-      <p>
-        It acts as a shared hub that always appears on the far left.
-        Memos in the MemoPool can be moved freely to any note or page.
-      </p>
-    </section>
-
-    <section class="card" id="drawer">
-      <h2><span class="dot"></span><strong>Managing Notes (Drawer)</strong></h2>
-
-      <p>
-        Tap the three-line icon in the top-left corner to open the drawer.
-      </p>
-      <p>You can do the following here:</p>
-
-      <ul>
-        <li>Create a <strong>new note</strong> (+)</li>
-        <li>Drag the handle on the right to <strong>reorder notes</strong></li>
-        <li>
-          Long-press a note to select one or more:
-          <ul>
-            <li>Edit icon → <strong>Edit</strong></li>
-            <li>Trash icon → <strong>Delete</strong></li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-
-    <section class="card" id="tabs">
-      <h2><span class="dot"></span><strong>Managing Pages (Tab Bar)</strong></h2>
-
-      <ul>
-        <li>
-          When a note is open, pages appear in the tab bar at the top.
-        </li>
-        <li>
-          Tap the three-dot menu in the top-right to
-          <strong>Create / Edit / Reorder / Delete</strong> pages<br />
-          (Tap the menu <span class="mono">when no memos are selected</span>)
-        </li>
-      </ul>
-    </section>
-
-    <section class="card" id="memos">
-      <h2><span class="dot"></span><strong>Managing Memos</strong></h2>
-
-      <p>
-        On pages or in the MemoPool, you can perform the following actions on memos:
-      </p>
-
-      <ul>
-        <li>Tap the round button in the bottom-right to <strong>add a new memo</strong></li>
-        <li>Tap a memo to <strong>edit</strong> its content</li>
-        <li>
-          Drag the handle on the right to <strong>reorder</strong> memos
-          (no long-press required)
-        </li>
-        <li>
-          Long-press a memo to select one or more
-          <div class="note" style="margin-top:10px;">
-            From the three-dot menu <strong>while memos are selected</strong>:
-            <ul>
-              <li><strong>Move</strong> — move memos to another page</li>
-              <li><strong>Merge</strong> — combine multiple memos into one</li>
-              <li><strong>Delete</strong> — deleted memos are moved to the trash</li>
-            </ul>
+          <div class="callout">
+            For example, you could create a note called “Reading Notes,” then add pages such as “Books to Read,” “Finished Books,” and “Favorite Quotes,” and write memos inside each page.
           </div>
-        </li>
-      </ul>
-    </section>
+        </div>
+      </section>
 
+      <section id="screen" class="section">
+        <div class="section-card">
+          <h2>Understanding the Screen</h2>
+
+          <h3>Pages Tab</h3>
+          <p>In the <strong>Pages tab</strong> at the top left, you can view the <strong>list of pages</strong> in the current note. Use this tab when you want to add a page or switch to another page.</p>
+
+          <h3>Memos Tab</h3>
+          <p>In the <strong>Memos tab</strong>, you can view the <strong>list of memos</strong> on the selected page. Use this tab to read, create, and edit memos.</p>
+
+          <h3>Drawer</h3>
+          <p>Open the <strong>Drawer</strong> from the menu in the top left to switch notes. You can also open <strong>Inbox</strong> there, which is managed separately from your regular notes.</p>
+        </div>
+      </section>
+
+      <section id="start" class="section">
+        <div class="section-card">
+          <h2>Getting Started</h2>
+
+          <h3>1. Create a Note</h3>
+          <p>Start by creating a note that matches the theme you want to manage. If you want to separate large categories of information, creating different notes will make things easier to organize.</p>
+
+          <h3>2. Create Pages</h3>
+          <p>Next, create pages inside the note. Pages help you divide your content further. You can separate them by topic, date, purpose, or any structure that works for you.</p>
+
+          <h3>3. Write Memos</h3>
+          <p>Open the Memos tab and start writing memos on the page. Since memos can be moved or copied later, you do not need to worry too much about perfect organization at the start.</p>
+        </div>
+      </section>
+
+      <section id="edit" class="section">
+        <div class="section-card">
+          <h2>Editing Memos</h2>
+          <p>Tap a memo to edit its contents. This makes it easy to add more details or make quick corrections later.</p>
+          <p>Because each memo is independent, PieceNote works well not only for writing long text in one place, but also for <strong>managing many short memos separately</strong>.</p>
+        </div>
+      </section>
+
+      <section id="organize" class="section">
+        <div class="section-card">
+          <h2>Organizing Memos</h2>
+
+          <h3>Select with a Long Press</h3>
+          <p>Long-press a memo to select it. Once selected, an action menu will appear from the bottom of the screen.</p>
+
+          <h3>Move</h3>
+          <p>You can move selected memos to another page or another note. This is useful when you want to reorganize your content later or when you wrote something in the wrong place.</p>
+
+          <h3>Copy</h3>
+          <p>You can copy selected memos to another page or another note. This is useful when you want to use the same content in more than one place. The original memo remains where it is.</p>
+
+          <h3>Multiple Selection</h3>
+          <p>While one memo is selected, tap other memos to select multiple memos. This is helpful when you want to perform actions on several memos at once.</p>
+
+          <h3>Merge</h3>
+          <p>If you select two or more memos and choose <strong>Merge</strong>, they can be combined into a single memo. This is useful when you want to turn several smaller memos into one organized memo later.</p>
+        </div>
+      </section>
+
+      <section id="reorder" class="section">
+        <div class="section-card">
+          <h2>Reordering Items</h2>
+          <p>You can change the order of notes, pages, and memos by switching to reorder mode from the <strong>Reorder</strong> button.</p>
+          <ul>
+            <li>Change the order of notes</li>
+            <li>Change the order of pages</li>
+            <li>Change the order of memos</li>
+          </ul>
+          <p>This makes it easy to rearrange your content into a more readable order after you write it. It works especially well with the “write first, organize later” style.</p>
+        </div>
+      </section>
+
+      <section id="inbox" class="section">
+        <div class="section-card">
+          <h2>Using Inbox</h2>
+          <p><strong>Inbox</strong> is a place to keep memos that you have not sorted yet. It is separate from your regular notes and can be opened from the Drawer.</p>
+          <p>You can use Inbox in situations like these:</p>
+          <ul>
+            <li>Quickly write down an idea before you forget it</li>
+            <li>Decide later which note it belongs to</li>
+            <li>Keep temporary memos in one place</li>
+          </ul>
+          <p>Inbox is useful when you do not want to stop and think about where something should go. You can place memos there first and move them to the appropriate note or page later.</p>
+        </div>
+      </section>
+
+      <section id="trash" class="section">
+        <div class="section-card">
+          <h2>About Trash</h2>
+          <p>Deleted memos are not removed immediately. Instead, they are moved to <strong>Trash</strong>. If you delete something by mistake, you can restore it from there.</p>
+          <p>Memos in Trash are <strong>deleted after 30 days</strong>. If you want to restore a deleted memo, be sure to check Trash before then.</p>
+        </div>
+      </section>
+
+      <section id="tips" class="section">
+        <div class="section-card">
+          <h2>Tips for Using PieceNote</h2>
+
+          <h3>Do Not Split Pages Too Much at First</h3>
+          <p>If you create too many pages from the beginning, it may become harder to decide where to write. It is usually better to start simple and add more pages only when needed.</p>
+
+          <h3>Use Inbox When You Are Unsure</h3>
+          <p>If you are not sure where something belongs, put it in Inbox first. That way, you can keep writing without interrupting your flow and sort it out later.</p>
+
+          <h3>Keep Memos Short</h3>
+          <p>Shorter memos are easier to move, copy, and merge. If you want your notes to stay flexible, writing in smaller pieces usually works better.</p>
+
+          <h3>Reorder Later</h3>
+          <p>The order in which you write things is not always the best order for reading them later. Feel free to write naturally first, then reorder everything afterward.</p>
+        </div>
+      </section>
+
+      <section id="summary" class="section">
+        <div class="section-card">
+          <h2>Summary</h2>
+          <p>PieceNote is an app that organizes information in the form of <strong>Notes → Pages → Memos</strong>.</p>
+          <ul class="summary-list">
+            <li>Use the Pages tab to view pages</li>
+            <li>Use the Memos tab to write memos</li>
+            <li>Use the Drawer to switch notes</li>
+            <li>Use Inbox as a temporary place for unsorted memos</li>
+            <li>Organize everything later by moving, copying, and reordering</li>
+          </ul>
+          <p>Once you get used to this flow, it becomes easier to keep writing and organizing without stress.</p>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <footer>
-    <div class="wrap">
-      <div>© OceanTechWorks / PieceNote</div>
-    </div>
+  <footer class="footer">
+    <div class="container">© PieceNote</div>
   </footer>
 </body>
 </html>
