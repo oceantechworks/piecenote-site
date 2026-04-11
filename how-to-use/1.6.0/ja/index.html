@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PieceNote の使い方</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --surface-soft: #f1f4f7;
+      --text: #1f2937;
+      --muted: #5b6472;
+      --accent: #0f766e;
+      --accent-soft: #dff4f1;
+      --border: #d9e0e7;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max-width: 920px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      line-height: 1.8;
+      color: var(--text);
+      background: linear-gradient(180deg, #f8fafc 0%, #eef4f7 100%);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 56px 0 24px;
+    }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 5vw, 44px);
+      line-height: 1.25;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 17px;
+      color: var(--muted);
+    }
+
+    .toc {
+      margin: 20px 0 40px;
+    }
+
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .toc h2,
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: 24px;
+      line-height: 1.4;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px 18px;
+    }
+
+    .toc-list li a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .main {
+      padding-bottom: 56px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .section p {
+      margin: 0 0 16px;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    h3 {
+      margin: 28px 0 10px;
+      font-size: 19px;
+      line-height: 1.5;
+    }
+
+    ul {
+      margin: 12px 0 0 0;
+      padding-left: 1.4em;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .callout {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: var(--surface-soft);
+      border-left: 4px solid var(--accent);
+    }
+
+    .summary-list {
+      margin-top: 8px;
+    }
+
+    .footer {
+      padding: 12px 0 40px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 28px;
+      }
+
+      .hero-card,
+      .toc-card,
+      .section-card {
+        padding: 22px;
+      }
+
+      .toc-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="eyebrow">PieceNote ガイド</div>
+        <h1>PieceNote の使い方</h1>
+        <p class="lead">
+          PieceNote は、ノートの中にページを作り、そのページの中にメモを書いて整理していくアプリです。
+          まず書いて、あとから移動・コピー・並べ替えをしながら整えていけます。
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section class="toc">
+    <div class="container">
+      <div class="toc-card">
+        <h2>目次</h2>
+        <ul class="toc-list">
+          <li><a href="#about">PieceNoteとは</a></li>
+          <li><a href="#concept">基本の考え方</a></li>
+          <li><a href="#screen">画面の見方</a></li>
+          <li><a href="#start">使い始める流れ</a></li>
+          <li><a href="#edit">メモを編集する</a></li>
+          <li><a href="#organize">メモを整理する</a></li>
+          <li><a href="#reorder">並べ替える</a></li>
+          <li><a href="#inbox">未整理メモを使う</a></li>
+          <li><a href="#search">メモを検索する</a></li>
+          <li><a href="#recent">最近のメモを見る</a></li>
+          <li><a href="#trash">ゴミ箱について</a></li>
+          <li><a href="#tips">使い方のコツ</a></li>
+          <li><a href="#summary">まとめ</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <main class="main">
+    <div class="container">
+      <section id="about" class="section">
+        <div class="section-card">
+          <h2>PieceNoteとは</h2>
+          <p>
+            PieceNote は、<strong>ノートの中にページを作り、そのページの中にメモを書いて整理していくアプリ</strong>です。
+            短いメモを少しずつ書きためながら、あとで移動・コピー・並べ替えをして整えていけるのが特徴です。
+          </p>
+          <p>
+            「最初からきっちり分類して書く」というより、<strong>まず書く → あとで整理する</strong>という流れで使いやすいように作られています。
+          </p>
+        </div>
+      </section>
+
+      <section id="concept" class="section">
+        <div class="section-card">
+          <h2>基本の考え方</h2>
+          <p>PieceNote では、情報を次の3つの単位で扱います。</p>
+
+          <h3>ノート</h3>
+          <p>大きな分類です。仕事、学習、趣味、日記など、テーマごとに分けて使います。</p>
+
+          <h3>ページ</h3>
+          <p>ノートの中に作る小さな分類です。1つのノートの中で、話題ごと・項目ごとに分けたいときに使います。</p>
+
+          <h3>メモ</h3>
+          <p>実際に書く内容です。思いついたこと、記録、下書き、チェックしたいことなどをメモとして残します。</p>
+
+          <div class="callout">
+            たとえば「読書ノート」というノートの中に「読みたい本」「読んだ本」「気になった言葉」というページを作り、その中にそれぞれのメモを書いていく、という使い方ができます。
+          </div>
+        </div>
+      </section>
+
+      <section id="screen" class="section">
+        <div class="section-card">
+          <h2>画面の見方</h2>
+
+          <h3>目次タブ</h3>
+          <p>左上の<strong>目次タブ</strong>では、現在開いているノートの<strong>ページ一覧</strong>を確認できます。ページを追加したり、別のページを選んだりするときはここを使います。</p>
+
+          <h3>本文タブ</h3>
+          <p><strong>本文タブ</strong>では、選択中のページにある<strong>メモ一覧</strong>を表示します。メモを読んだり、新しく作成したり、編集したりするときはこのタブを使います。</p>
+
+          <h3>検索アイコン</h3>
+          <p>ホーム画面右上の<strong>検索アイコン</strong>から、メモ検索画面を開けます。目的のメモを探したいときに使います。</p>
+
+          <h3>Drawer</h3>
+          <p>画面左上のメニューから<strong>Drawer</strong>を開くと、ノートの切り替えができます。また、通常のノートとは別に管理される<strong>未整理メモ</strong>や<strong>最近のメモ</strong>もここから開けます。</p>
+        </div>
+      </section>
+
+      <section id="start" class="section">
+        <div class="section-card">
+          <h2>使い始める流れ</h2>
+
+          <h3>1. ノートを作る</h3>
+          <p>まずは、使いたいテーマに合わせてノートを作ります。大きく内容を分けたいときは、ノートを分けておくと整理しやすくなります。</p>
+
+          <h3>2. ページを作る</h3>
+          <p>次に、そのノートの中にページを作ります。ページは、内容をさらに分けるための単位です。話題ごと、日付ごと、目的ごとなど、自分に合った分け方で使えます。</p>
+
+          <h3>3. メモを書く</h3>
+          <p>本文タブを開いて、ページの中にメモを書いていきます。メモはあとから移動やコピーができるので、最初は細かく考えすぎなくても大丈夫です。</p>
+        </div>
+      </section>
+
+      <section id="edit" class="section">
+        <div class="section-card">
+          <h2>メモを編集する</h2>
+          <p>作成したメモをタップすると、内容を編集できます。ちょっとした追記や修正をしたいときも、あとから気軽に書き換えられます。</p>
+          <p>メモは1つずつ独立しているため、長い文章を1つにまとめる使い方だけでなく、<strong>短いメモを複数に分けて管理する使い方</strong>にも向いています。</p>
+        </div>
+      </section>
+
+      <section id="organize" class="section">
+        <div class="section-card">
+          <h2>メモを整理する</h2>
+
+          <h3>長押しで選択</h3>
+          <p>メモを長押しすると、そのメモが選択状態になります。選択すると、画面下から操作メニューが表示されます。</p>
+
+          <h3>移動</h3>
+          <p>選択したメモは、別のページや別のノートへ移動できます。あとから整理し直したいときや、書く場所を間違えたときに便利です。</p>
+
+          <h3>コピー</h3>
+          <p>選択したメモは、別のページや別のノートへコピーできます。同じ内容を複数の場所で使いたいときに役立ちます。コピー後も元のメモはそのまま残ります。</p>
+
+          <h3>複数選択</h3>
+          <p>1つのメモを選択した状態で、他のメモをタップすると複数選択できます。複数のメモをまとめて操作したいときに便利です。</p>
+
+          <h3>結合</h3>
+          <p>2つ以上のメモを選択して<strong>結合</strong>を選ぶと、複数のメモを1つにまとめられます。細かく書いていたメモを、あとから1つに整理したいときに使えます。</p>
+        </div>
+      </section>
+
+      <section id="reorder" class="section">
+        <div class="section-card">
+          <h2>並べ替える</h2>
+          <p>ノート・ページ・メモは、それぞれ<strong>並べ替えボタン</strong>から並べ替えモードに切り替えることで順番を変更できます。</p>
+          <ul>
+            <li>ノートの順番を変える</li>
+            <li>ページの順番を変える</li>
+            <li>メモの順番を変える</li>
+          </ul>
+          <p>このように、書いたあとで見やすい順番へ整えることができます。「まず書く、あとで順番を整える」という使い方と相性の良い機能です。</p>
+        </div>
+      </section>
+
+      <section id="inbox" class="section">
+        <div class="section-card">
+          <h2>未整理メモを使う</h2>
+          <p><strong>未整理メモ</strong>は、まだ分類先を決めていないメモを置いておくための場所です。通常のノートとは独立しており、Drawer から開けます。</p>
+          <p>たとえば、次のような使い方ができます。</p>
+          <ul>
+            <li>とりあえず思いついたことをすぐ書く</li>
+            <li>あとでどのノートに入れるか決める</li>
+            <li>一時的なメモをまとめて置いておく</li>
+          </ul>
+          <p>「書く場所に迷って手が止まる」のを防ぎたいときに便利です。まず未整理メモに入れておき、あとから必要なノートやページへ移す、という使い方がおすすめです。</p>
+        </div>
+      </section>
+
+      <section id="search" class="section">
+        <div class="section-card">
+          <h2>メモを検索する</h2>
+          <p><strong>検索</strong>を使うと、メモの内容から目的のメモを探せます。長く使ってメモが増えてきたときに便利です。</p>
+
+          <h3>検索画面を開く</h3>
+          <p>検索はホーム画面右上の<strong>検索アイコン</strong>から開けます。検索したい言葉を入力して実行すると、条件に合うメモが一覧で表示されます。</p>
+
+          <h3>検索結果からメモを開く</h3>
+          <p>検索結果をタップすると、そのメモがあるページへ移動して内容を確認できます。目的のメモへすばやくたどり着きたいときに役立ちます。</p>
+
+          <h3>ハイライト表示</h3>
+          <p>検索中は、検索語がハイライト表示されます。結果一覧だけでなく、開いたメモの中でも一致箇所を見つけやすくなります。</p>
+
+          <div class="callout">
+            「前に書いた内容を探したいけれど、どのページにあるか分からない」というときは、まず検索を使うのがおすすめです。
+          </div>
+        </div>
+      </section>
+
+      <section id="recent" class="section">
+        <div class="section-card">
+          <h2>最近のメモを見る</h2>
+          <p><strong>最近のメモ</strong>では、最近更新したメモを新しい順に一覧で確認できます。Drawer から開けます。</p>
+
+          <h3>最近触ったメモをすぐ開く</h3>
+          <p>少し前に編集したメモをもう一度開きたいとき、ノートやページをたどらなくても見つけやすくなります。</p>
+
+          <h3>どのノート・ページにあるかも分かる</h3>
+          <p>各メモには所属するノート名やページ名が表示されるため、今どこにあるメモなのかを把握しながら確認できます。</p>
+
+          <h3>一覧からそのままジャンプ</h3>
+          <p>項目をタップすると、対象のメモがあるページへ移動できます。作業を再開したいときや、最近の流れを追いたいときに便利です。</p>
+        </div>
+      </section>
+
+      <section id="trash" class="section">
+        <div class="section-card">
+          <h2>ゴミ箱について</h2>
+          <p>削除したメモは、すぐには完全に消えず<strong>ゴミ箱</strong>に入ります。誤って削除した場合でも、ゴミ箱から元に戻すことができます。</p>
+          <p>また、ゴミ箱に入ったメモは<strong>30日後に削除</strong>されます。削除したメモを戻したいときは、早めに確認してください。</p>
+        </div>
+      </section>
+
+      <section id="tips" class="section">
+        <div class="section-card">
+          <h2>使い方のコツ</h2>
+
+          <h3>まずはページを細かく分けすぎない</h3>
+          <p>最初からページを増やしすぎると迷いやすくなります。まずは少なめに始めて、必要になったら増やすのがおすすめです。</p>
+
+          <h3>迷ったら未整理メモに入れる</h3>
+          <p>どこに書くか迷う内容は、まず未整理メモに入れておくと流れが止まりません。あとで見返して整理すれば大丈夫です。</p>
+
+          <h3>検索を活用する</h3>
+          <p>メモが増えてきたら、ページを順番に探すより検索を使ったほうが早いことがあります。昔のメモを見返したいときにも便利です。</p>
+
+          <h3>最近のメモから作業を再開する</h3>
+          <p>直近で触ったメモをもう一度開きたいときは、「最近のメモ」を使うとスムーズです。続きから作業したい場面に向いています。</p>
+
+          <h3>メモは短く分けて書く</h3>
+          <p>メモを短く分けておくと、移動・コピー・結合がしやすくなります。あとから整理しやすくしたい場合は、細かめに分けて書くのが向いています。</p>
+
+          <h3>あとで並べ替えて整える</h3>
+          <p>書く順番と、見やすい順番は同じとは限りません。まずは自由に書き、あとから並べ替えて整えると使いやすくなります。</p>
+        </div>
+      </section>
+
+      <section id="summary" class="section">
+        <div class="section-card">
+          <h2>まとめ</h2>
+          <p>PieceNote は、<strong>ノート → ページ → メモ</strong>という形で情報を整理していくアプリです。</p>
+          <ul class="summary-list">
+            <li>目次タブでページを見る</li>
+            <li>本文タブでメモを書く</li>
+            <li>Drawer でノートを切り替える</li>
+            <li>未整理メモに一時的に置く</li>
+            <li>検索で目的のメモを探す</li>
+            <li>最近のメモから最近更新した内容を開く</li>
+            <li>あとから移動・コピー・並べ替えで整える</li>
+          </ul>
+          <p>この流れに慣れると、書くことと整理することを無理なく続けられます。</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© PieceNote</div>
+  </footer>
+</body>
+</html>
