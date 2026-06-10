@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PieceNote 사용 방법</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --surface-soft: #f1f4f7;
+      --text: #1f2937;
+      --muted: #5b6472;
+      --accent: #0f766e;
+      --accent-soft: #dff4f1;
+      --border: #d9e0e7;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max-width: 920px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.8;
+      color: var(--text);
+      background: linear-gradient(180deg, #f8fafc 0%, #eef4f7 100%);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 56px 0 24px;
+    }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 5vw, 44px);
+      line-height: 1.25;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 17px;
+      color: var(--muted);
+    }
+
+    .toc {
+      margin: 20px 0 40px;
+    }
+
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .toc h2,
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: 24px;
+      line-height: 1.4;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px 18px;
+    }
+
+    .toc-list li a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .main {
+      padding-bottom: 56px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .section p {
+      margin: 0 0 16px;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    h3 {
+      margin: 28px 0 10px;
+      font-size: 19px;
+      line-height: 1.5;
+    }
+
+    ul {
+      margin: 12px 0 0 0;
+      padding-left: 1.4em;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .callout {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: var(--surface-soft);
+      border-left: 4px solid var(--accent);
+    }
+
+    .summary-list {
+      margin-top: 8px;
+    }
+
+    .footer {
+      padding: 12px 0 40px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 28px;
+      }
+
+      .hero-card,
+      .toc-card,
+      .section-card {
+        padding: 22px;
+      }
+
+      .toc-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="eyebrow">PieceNote 가이드</div>
+        <h1>PieceNote 사용 방법</h1>
+        <p class="lead">
+          PieceNote는 노트 안에 페이지를 만들고, 그 페이지 안에 메모를 작성해 아이디어를 정리하는 앱입니다.
+          먼저 작성한 뒤, 나중에 이동, 복사, 정렬, 내보내기로 내용을 다듬어 갈 수 있습니다.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section class="toc">
+    <div class="container">
+      <div class="toc-card">
+        <h2>목차</h2>
+        <ul class="toc-list">
+          <li><a href="#about">PieceNote란?</a></li>
+          <li><a href="#concept">기본 구조</a></li>
+          <li><a href="#screen">화면 이해하기</a></li>
+          <li><a href="#start">시작하기</a></li>
+          <li><a href="#edit">메모 편집하기</a></li>
+          <li><a href="#organize">메모 정리하기</a></li>
+          <li><a href="#reorder">항목 정렬하기</a></li>
+          <li><a href="#export">메모 내보내기</a></li>
+          <li><a href="#inbox">미정리 메모 사용하기</a></li>
+          <li><a href="#search">메모 검색하기</a></li>
+          <li><a href="#recent">최근 메모 보기</a></li>
+          <li><a href="#trash">휴지통에 대해</a></li>
+          <li><a href="#tips">PieceNote 사용 팁</a></li>
+          <li><a href="#summary">요약</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <main class="main">
+    <div class="container">
+      <section id="about" class="section">
+        <div class="section-card">
+          <h2>PieceNote란?</h2>
+          <p>
+            PieceNote는 <strong>노트 안에 페이지를 만들고, 그 페이지 안에 메모를 작성해 정보를 정리하는 앱</strong>입니다.
+            짧은 메모를 조금씩 모아 두었다가 나중에 이동, 복사, 정렬, 내보내기를 통해 정리할 수 있도록 설계되었습니다.
+          </p>
+          <p>
+            처음부터 모든 것을 완벽하게 분류하도록 강요하기보다, PieceNote는 <strong>먼저 쓰고, 나중에 정리하는</strong> 흐름에 맞게 만들어졌습니다.
+          </p>
+        </div>
+      </section>
+
+      <section id="concept" class="section">
+        <div class="section-card">
+          <h2>기본 구조</h2>
+          <p>PieceNote는 정보를 세 단계로 정리합니다.</p>
+
+          <h3>노트</h3>
+          <p>노트는 큰 분류입니다. 업무, 학습, 취미, 일기처럼 넓은 주제별로 사용할 수 있습니다.</p>
+
+          <h3>페이지</h3>
+          <p>페이지는 노트 안에 만드는 작은 분류입니다. 하나의 노트를 주제, 항목, 목적별로 나누고 싶을 때 유용합니다.</p>
+
+          <h3>메모</h3>
+          <p>메모는 실제로 작성하는 내용입니다. 아이디어, 기록, 초안, 알림 등 다양한 내용을 남길 수 있습니다.</p>
+
+          <div class="callout">
+            예를 들어 “독서 노트”라는 노트를 만들고, 그 안에 “읽고 싶은 책”, “읽은 책”, “좋아하는 문장” 같은 페이지를 추가한 뒤 각 페이지에 메모를 작성할 수 있습니다.
+          </div>
+        </div>
+      </section>
+
+      <section id="screen" class="section">
+        <div class="section-card">
+          <h2>화면 이해하기</h2>
+
+          <h3>페이지 탭</h3>
+          <p>왼쪽 위의 <strong>페이지 탭</strong>에서는 현재 노트의 <strong>페이지 목록</strong>을 볼 수 있습니다. 페이지를 추가하거나 다른 페이지로 이동하고 싶을 때 이 탭을 사용합니다.</p>
+          <p>페이지를 길게 누르면 선택 상태가 됩니다. 그런 다음 화면 아래의 작업 패널에서 해당 페이지에 대한 작업을 수행할 수 있으며, 페이지 내보내기도 여기서 할 수 있습니다.</p>
+
+          <h3>본문 탭</h3>
+          <p><strong>본문 탭</strong>에서는 선택한 페이지의 <strong>메모 목록</strong>을 볼 수 있습니다. 메모를 읽고, 만들고, 편집할 때 이 탭을 사용합니다.</p>
+          <p>메모를 길게 누르면 선택 상태가 됩니다. 그런 다음 화면 아래의 작업 패널에서 선택한 메모를 이동, 복사, 병합, 삭제하고 관리할 수 있습니다.</p>
+
+          <h3>하단 작업 패널</h3>
+          <p>하단 작업 패널에는 페이지 탭과 본문 탭에서 추가, 정렬 같은 작업이 표시됩니다. 항목을 선택하면 선택한 페이지나 메모에 대한 작업으로 바뀝니다.</p>
+
+          <h3>검색 아이콘</h3>
+          <p>홈 화면 오른쪽 위의 <strong>검색 아이콘</strong>을 사용하면 메모 검색 화면을 열 수 있습니다. 특정 메모를 빠르게 찾고 싶을 때 유용합니다.</p>
+
+          <h3>사이드 메뉴</h3>
+          <p>왼쪽 위 메뉴에서 <strong>사이드 메뉴</strong>를 열어 노트를 전환할 수 있습니다. 여기에서 <strong>미정리 메모</strong>와 <strong>최근 메모</strong>도 열 수 있습니다.</p>
+          <p>노트를 길게 누르면 선택 상태가 됩니다. 그런 다음 노트 내보내기를 포함한 노트 작업을 사용할 수 있습니다.</p>
+        </div>
+      </section>
+
+      <section id="start" class="section">
+        <div class="section-card">
+          <h2>시작하기</h2>
+
+          <h3>1. 노트 만들기</h3>
+          <p>먼저 관리하고 싶은 주제에 맞는 노트를 만듭니다. 정보를 큰 범주로 나누고 싶다면 노트를 여러 개로 나누면 더 쉽게 정리할 수 있습니다.</p>
+
+          <h3>2. 페이지 만들기</h3>
+          <p>다음으로 노트 안에 페이지를 만듭니다. 페이지는 내용을 더 세부적으로 나누는 데 도움이 됩니다. 주제, 날짜, 목적 등 자신에게 맞는 구조로 나눌 수 있습니다.</p>
+
+          <h3>3. 메모 작성하기</h3>
+          <p>본문 탭을 열고 페이지 안에 메모를 작성합니다. 메모는 나중에 이동하거나 복사할 수 있으므로, 처음부터 완벽하게 정리하려고 너무 고민하지 않아도 됩니다.</p>
+        </div>
+      </section>
+
+      <section id="edit" class="section">
+        <div class="section-card">
+          <h2>메모 편집하기</h2>
+          <p>메모를 탭하면 내용을 편집할 수 있습니다. 나중에 내용을 추가하거나 간단히 수정할 때도 쉽게 고칠 수 있습니다.</p>
+          <p>각 메모는 독립되어 있기 때문에, 긴 글을 한곳에 쓰는 방식뿐 아니라 <strong>짧은 메모를 여러 개로 나누어 관리하는 방식</strong>에도 잘 맞습니다.</p>
+        </div>
+      </section>
+
+      <section id="organize" class="section">
+        <div class="section-card">
+          <h2>메모 정리하기</h2>
+
+          <h3>길게 눌러 선택하기</h3>
+          <p>메모를 길게 누르면 해당 메모가 선택됩니다. 선택되면 화면 아래에 작업 패널이 나타납니다.</p>
+
+          <h3>이동</h3>
+          <p>선택한 메모를 다른 페이지나 다른 노트로 이동할 수 있습니다. 나중에 내용을 다시 정리하고 싶을 때나 잘못된 위치에 작성했을 때 유용합니다.</p>
+
+          <h3>복사</h3>
+          <p>선택한 메모를 다른 페이지나 다른 노트로 복사할 수 있습니다. 같은 내용을 여러 곳에서 사용하고 싶을 때 유용합니다. 원래 메모는 그대로 남아 있습니다.</p>
+
+          <h3>여러 개 선택</h3>
+          <p>메모 하나가 선택된 상태에서 다른 메모를 탭하면 여러 메모를 선택할 수 있습니다. 여러 메모에 같은 작업을 한 번에 적용하고 싶을 때 편리합니다.</p>
+
+          <h3>병합</h3>
+          <p>두 개 이상의 메모를 선택하고 <strong>병합</strong>을 선택하면 하나의 메모로 합칠 수 있습니다. 여러 개의 작은 메모를 나중에 하나의 정리된 메모로 만들고 싶을 때 유용합니다.</p>
+
+          <h3>페이지와 노트 작업</h3>
+          <p>페이지와 노트도 길게 눌러 선택할 수 있습니다. 선택한 뒤에는 작업 패널에서 이름 변경, 삭제, 내보내기 등 사용 가능한 작업을 실행할 수 있습니다.</p>
+        </div>
+      </section>
+
+      <section id="reorder" class="section">
+        <div class="section-card">
+          <h2>항목 정렬하기</h2>
+          <p><strong>정렬</strong> 버튼에서 정렬 모드로 전환하면 노트, 페이지, 메모의 순서를 변경할 수 있습니다.</p>
+          <ul>
+            <li>노트 순서 변경</li>
+            <li>페이지 순서 변경</li>
+            <li>메모 순서 변경</li>
+          </ul>
+          <p>페이지와 메모의 정렬 버튼은 홈 화면 하단 작업 패널에 표시됩니다. 노트 정렬은 사이드 메뉴에서 사용할 수 있습니다.</p>
+          <p>이 기능을 사용하면 작성한 뒤에 내용을 더 읽기 쉬운 순서로 다시 배치할 수 있습니다. “먼저 쓰고, 나중에 정리하는” 방식과 잘 어울립니다.</p>
+        </div>
+      </section>
+
+      <section id="export" class="section">
+        <div class="section-card">
+          <h2>메모 내보내기</h2>
+          <p><strong>내보내기</strong>를 사용하면 PieceNote의 메모를 파일로 꺼낼 수 있습니다. 내보낸 파일은 보관용으로 남기거나 다른 기기 또는 다른 앱에서 열거나 공유할 수 있습니다.</p>
+
+          <h3>내보내기 범위</h3>
+          <ul>
+            <li>페이지 하나 내보내기</li>
+            <li>노트 하나 내보내기</li>
+            <li>모든 노트 내보내기</li>
+          </ul>
+
+          <h3>페이지 하나 내보내기</h3>
+          <p>페이지 하나를 내보내려면 홈 화면의 <strong>페이지 탭</strong>에서 페이지를 길게 누른 뒤, 작업 패널에서 내보내기를 선택합니다.</p>
+
+          <h3>노트 하나 또는 모든 노트 내보내기</h3>
+          <p>노트 하나 또는 모든 노트를 내보내려면 설정에서 <strong>내보내기</strong> 화면을 엽니다. 사이드 메뉴에서 노트를 길게 눌러 노트 하나를 내보낼 수도 있습니다.</p>
+
+          <h3>TXT와 Markdown</h3>
+          <p><strong>TXT</strong>는 서식이나 리치 텍스트 스타일 없이 텍스트 내용을 중심으로 내보냅니다. 단순한 텍스트 파일로 보관하고 싶을 때 유용합니다.</p>
+          <p><strong>Markdown</strong>은 제목, 목록, 체크박스 등 지원되는 서식을 Markdown 형식으로 내보냅니다. 밑줄이나 글자 색상 같은 일부 스타일은 유지되지 않습니다.</p>
+
+          <div class="callout">
+            내보내기는 백업과 다른 기능입니다. 나중에 복원할 수 있는 형태로 앱 데이터를 보관하려면 설정의 백업 기능을 사용하세요.
+          </div>
+        </div>
+      </section>
+
+      <section id="inbox" class="section">
+        <div class="section-card">
+          <h2>미정리 메모 사용하기</h2>
+          <p><strong>미정리 메모</strong>는 아직 분류하지 않은 메모를 보관하는 곳입니다. 일반 노트와 분리되어 있으며 사이드 메뉴에서 열 수 있습니다.</p>
+          <p>다음과 같은 상황에서 사용할 수 있습니다.</p>
+          <ul>
+            <li>잊기 전에 아이디어를 빠르게 적어 두기</li>
+            <li>어느 노트에 넣을지 나중에 결정하기</li>
+            <li>임시 메모를 한곳에 모아 두기</li>
+          </ul>
+          <p>미정리 메모는 어디에 적을지 고민하느라 흐름이 끊기는 것을 막고 싶을 때 유용합니다. 먼저 여기에 메모를 넣어 두고, 나중에 적절한 노트나 페이지로 옮기면 됩니다.</p>
+        </div>
+      </section>
+
+      <section id="search" class="section">
+        <div class="section-card">
+          <h2>메모 검색하기</h2>
+          <p><strong>검색</strong>은 메모 내용에서 원하는 메모를 찾는 데 도움이 됩니다. 시간이 지나 메모가 많아질수록 특히 유용합니다.</p>
+
+          <h3>검색 화면 열기</h3>
+          <p>홈 화면 오른쪽 위의 <strong>검색 아이콘</strong>에서 검색을 열 수 있습니다. 단어나 문구를 입력해 검색하면 일치하는 메모가 목록으로 표시됩니다.</p>
+
+          <h3>검색 결과에서 메모 열기</h3>
+          <p>결과를 탭하면 해당 메모가 있는 페이지로 바로 이동할 수 있습니다. 각 페이지를 직접 확인하지 않고도 필요한 내용을 찾기 쉽습니다.</p>
+
+          <h3>일치 항목 강조 표시</h3>
+          <p>검색 중에는 일치하는 단어가 강조 표시됩니다. 결과 목록과 열린 메모 안에서 검색어가 어디에 있는지 더 쉽게 찾을 수 있습니다.</p>
+
+          <div class="callout">
+            작성한 내용의 일부는 기억나지만 어디에 썼는지 모를 때는, 보통 검색을 사용하는 것이 가장 빠릅니다.
+          </div>
+        </div>
+      </section>
+
+      <section id="recent" class="section">
+        <div class="section-card">
+          <h2>최근 메모 보기</h2>
+          <p><strong>최근 메모</strong>는 최근에 업데이트한 메모를 최신순으로 보여 줍니다. 사이드 메뉴에서 열 수 있습니다.</p>
+
+          <h3>최근 작업한 메모 다시 열기</h3>
+          <p>조금 전에 수정했던 메모를 계속 편집하고 싶을 때, 노트와 페이지를 거슬러 찾지 않아도 빠르게 찾을 수 있습니다.</p>
+
+          <h3>속한 노트와 페이지 확인하기</h3>
+          <p>각 항목에는 노트 이름과 페이지 이름도 표시되므로, 목록을 보면서 메모가 어디에 있는지 확인할 수 있습니다.</p>
+
+          <h3>목록에서 바로 이동하기</h3>
+          <p>항목을 탭하면 해당 메모가 있는 페이지로 이동합니다. 작업을 이어서 하거나 최근 활동을 확인하고 싶을 때 유용합니다.</p>
+        </div>
+      </section>
+
+      <section id="trash" class="section">
+        <div class="section-card">
+          <h2>휴지통에 대해</h2>
+          <p>삭제한 메모는 즉시 완전히 사라지지 않습니다. 대신 <strong>휴지통</strong>으로 이동합니다. 실수로 삭제했다면 그곳에서 복원할 수 있습니다.</p>
+          <p>휴지통에 있는 메모는 <strong>30일 후 삭제</strong>됩니다. 삭제한 메모를 복원하고 싶다면 그 전에 휴지통을 확인하세요.</p>
+        </div>
+      </section>
+
+      <section id="tips" class="section">
+        <div class="section-card">
+          <h2>PieceNote 사용 팁</h2>
+
+          <h3>처음부터 페이지를 너무 많이 나누지 않기</h3>
+          <p>처음부터 페이지를 너무 많이 만들면 어디에 작성할지 정하기 어려워질 수 있습니다. 보통은 단순하게 시작하고, 필요할 때 페이지를 추가하는 편이 좋습니다.</p>
+
+          <h3>망설여질 때는 미정리 메모 사용하기</h3>
+          <p>어디에 둘지 확실하지 않은 내용은 먼저 미정리 메모에 넣어 두세요. 흐름을 끊지 않고 계속 작성한 뒤, 나중에 정리할 수 있습니다.</p>
+
+          <h3>검색을 바로가기처럼 활용하기</h3>
+          <p>메모가 많아지면 페이지를 하나씩 여는 것보다 검색이 더 빠를 수 있습니다. 예전에 작성한 내용을 다시 찾고 싶을 때도 유용합니다.</p>
+
+          <h3>최근 메모에서 작업 이어가기</h3>
+          <p>최근에 편집한 항목을 다시 열고 싶다면 최근 메모에서 시작하면 편리합니다. 이전에 하던 작업을 이어 갈 때 잘 맞습니다.</p>
+
+          <h3>메모는 짧게 나누어 쓰기</h3>
+          <p>짧은 메모는 이동, 복사, 병합하기가 더 쉽습니다. 노트를 유연하게 유지하고 싶다면 작은 단위로 나누어 쓰는 편이 좋습니다.</p>
+
+          <h3>나중에 정렬하기</h3>
+          <p>작성한 순서가 나중에 읽기 좋은 순서와 항상 같지는 않습니다. 먼저 자연스럽게 작성한 뒤, 나중에 순서를 정리해도 됩니다.</p>
+
+          <h3>중요한 메모 내보내기</h3>
+          <p>중요한 메모를 앱 밖에 보관하거나 다른 앱에서 사용하고 싶다면 TXT 또는 Markdown 파일로 내보내세요.</p>
+        </div>
+      </section>
+
+      <section id="summary" class="section">
+        <div class="section-card">
+          <h2>요약</h2>
+          <p>PieceNote는 <strong>노트 → 페이지 → 메모</strong> 형태로 정보를 정리하는 앱입니다.</p>
+          <ul class="summary-list">
+            <li>페이지 탭에서 페이지 보기</li>
+            <li>본문 탭에서 메모 작성하기</li>
+            <li>사이드 메뉴에서 노트 전환하기</li>
+            <li>미정리 메모를 분류 전 임시 공간으로 사용하기</li>
+            <li>검색으로 필요한 메모 찾기</li>
+            <li>최근 메모에서 최근 업데이트한 내용 다시 열기</li>
+            <li>나중에 이동, 복사, 정렬로 정리하기</li>
+            <li>메모를 TXT 또는 Markdown 파일로 내보내기</li>
+          </ul>
+          <p>이 흐름에 익숙해지면 부담 없이 계속 작성하고 정리하기가 쉬워집니다.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© PieceNote</div>
+  </footer>
+</body>
+</html>
