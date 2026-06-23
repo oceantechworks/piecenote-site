@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guide d’utilisation de PieceNote</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --surface-soft: #f1f4f7;
+      --text: #1f2937;
+      --muted: #5b6472;
+      --accent: #0f766e;
+      --accent-soft: #dff4f1;
+      --border: #d9e0e7;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max-width: 920px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.8;
+      color: var(--text);
+      background: linear-gradient(180deg, #f8fafc 0%, #eef4f7 100%);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 56px 0 24px;
+    }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 5vw, 44px);
+      line-height: 1.25;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 17px;
+      color: var(--muted);
+    }
+
+    .toc {
+      margin: 20px 0 40px;
+    }
+
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .toc h2,
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: 24px;
+      line-height: 1.4;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px 18px;
+    }
+
+    .toc-list li a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .main {
+      padding-bottom: 56px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .section p {
+      margin: 0 0 16px;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    h3 {
+      margin: 28px 0 10px;
+      font-size: 19px;
+      line-height: 1.5;
+    }
+
+    ul {
+      margin: 12px 0 0 0;
+      padding-left: 1.4em;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .callout {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: var(--surface-soft);
+      border-left: 4px solid var(--accent);
+    }
+
+    .summary-list {
+      margin-top: 8px;
+    }
+
+    .back-to-toc {
+      margin-top: 24px !important;
+      text-align: right;
+    }
+
+    .back-to-toc a {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: var(--surface-soft);
+      font-weight: 600;
+    }
+
+    .footer {
+      padding: 12px 0 40px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 28px;
+      }
+
+      .hero-card,
+      .toc-card,
+      .section-card {
+        padding: 22px;
+      }
+
+      .toc-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="eyebrow">Guide PieceNote</div>
+        <h1>Guide d’utilisation de PieceNote</h1>
+        <p class="lead">
+          PieceNote est une application qui vous permet de créer des pages dans vos notes et d’y organiser vos idées sous forme de mémos.
+          Vous pouvez commencer par écrire, puis déplacer, copier, réorganiser et exporter vos mémos plus tard.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section id="toc" class="toc">
+    <div class="container">
+      <div class="toc-card">
+        <h2>Sommaire</h2>
+        <ul class="toc-list">
+          <li><a href="#about">Qu’est-ce que PieceNote&nbsp;?</a></li>
+          <li><a href="#concept">Structure de base</a></li>
+          <li><a href="#screen">Comprendre l’écran</a></li>
+          <li><a href="#start">Premiers pas</a></li>
+          <li><a href="#edit">Modifier les mémos</a></li>
+          <li><a href="#collapse">Réduire les mémos</a></li>
+          <li><a href="#organize">Organiser les mémos</a></li>
+          <li><a href="#reorder">Réorganiser les éléments</a></li>
+          <li><a href="#export">Exporter les mémos</a></li>
+          <li><a href="#inbox">Utiliser la Boîte de réception</a></li>
+          <li><a href="#search">Rechercher des mémos</a></li>
+          <li><a href="#recent">Consulter les mémos récents</a></li>
+          <li><a href="#trash">À propos de la Corbeille</a></li>
+          <li><a href="#tips">Conseils d’utilisation</a></li>
+          <li><a href="#summary">Résumé</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <main class="main">
+    <div class="container">
+      <section id="about" class="section">
+        <div class="section-card">
+          <h2>Qu’est-ce que PieceNote&nbsp;?</h2>
+          <p>
+            PieceNote est une application qui vous permet de <strong>créer des pages dans vos notes et d’organiser vos informations en écrivant des mémos sur ces pages</strong>.
+            Elle est conçue pour vous aider à accumuler de courts mémos petit à petit, puis à les organiser plus tard en les déplaçant, en les copiant, en les réorganisant ou en les exportant.
+          </p>
+          <p>
+            Au lieu de vous obliger à tout classer parfaitement dès le départ, PieceNote suit une logique simple&nbsp;: <strong>écrire d’abord, organiser ensuite</strong>.
+          </p>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="concept" class="section">
+        <div class="section-card">
+          <h2>Structure de base</h2>
+          <p>Dans PieceNote, les informations sont organisées sur trois niveaux.</p>
+
+          <h3>Notes</h3>
+          <p>Les notes sont les grandes catégories. Vous pouvez les utiliser pour le travail, les études, les loisirs, un journal personnel ou d’autres grands thèmes.</p>
+
+          <h3>Pages</h3>
+          <p>Les pages sont de plus petites catégories à l’intérieur d’une note. Elles sont utiles lorsque vous voulez diviser une note par sujet, par élément ou par objectif.</p>
+
+          <h3>Mémos</h3>
+          <p>Les mémos sont les contenus que vous écrivez réellement. Vous pouvez y noter des idées, des informations, des brouillons, des rappels, et bien plus encore.</p>
+
+          <div class="callout">
+            Par exemple, vous pouvez créer une note appelée «&nbsp;Notes de lecture&nbsp;», y ajouter des pages comme «&nbsp;Livres à lire&nbsp;», «&nbsp;Livres terminés&nbsp;» et «&nbsp;Citations favorites&nbsp;», puis écrire des mémos dans chaque page.
+          </div>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="screen" class="section">
+        <div class="section-card">
+          <h2>Comprendre l’écran</h2>
+
+          <h3>Onglet Pages</h3>
+          <p>Dans l’<strong>onglet Pages</strong>, en haut à gauche, vous pouvez consulter la <strong>liste des pages</strong> de la note actuelle. Utilisez cet onglet pour ajouter une page ou passer à une autre page.</p>
+          <p>Appuyez longuement sur une page pour la sélectionner. Vous pourrez ensuite utiliser le panneau d’actions en bas de l’écran pour effectuer des actions sur cette page, y compris l’exporter.</p>
+
+          <h3>Onglet Mémos</h3>
+          <p>Dans l’<strong>onglet Mémos</strong>, vous pouvez consulter la <strong>liste des mémos</strong> de la page sélectionnée. Utilisez cet onglet pour lire, créer et modifier vos mémos.</p>
+          <p>Appuyez longuement sur un mémo pour le sélectionner. Vous pourrez ensuite utiliser le panneau d’actions en bas de l’écran pour déplacer, copier, fusionner, supprimer et gérer les mémos sélectionnés.</p>
+
+          <h3>Panneau d’actions inférieur</h3>
+          <p>Le panneau d’actions inférieur affiche des actions comme l’ajout et la réorganisation dans l’onglet Pages et l’onglet Mémos. Lorsqu’un élément est sélectionné, il affiche les actions disponibles pour la page ou le mémo sélectionné.</p>
+
+          <h3>Icône de recherche</h3>
+          <p>Utilisez l’<strong>icône de recherche</strong> en haut à droite de l’écran d’accueil pour ouvrir l’écran de recherche des mémos. C’est pratique lorsque vous voulez retrouver rapidement un mémo précis.</p>
+
+          <h3>Menu latéral</h3>
+          <p>Ouvrez le <strong>menu latéral</strong> depuis le menu en haut à gauche pour changer de note. Vous pouvez également y ouvrir la <strong>Boîte de réception</strong> et les <strong>Mémos récents</strong>.</p>
+          <p>Appuyez longuement sur une note pour la sélectionner. Vous pourrez ensuite utiliser les actions de note, y compris l’exportation de cette note.</p>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="start" class="section">
+        <div class="section-card">
+          <h2>Premiers pas</h2>
+
+          <h3>1. Créer une note</h3>
+          <p>Commencez par créer une note correspondant au thème que vous voulez gérer. Si vous souhaitez séparer de grandes catégories d’informations, créer plusieurs notes facilitera l’organisation.</p>
+
+          <h3>2. Créer des pages</h3>
+          <p>Ensuite, créez des pages dans cette note. Les pages vous aident à diviser davantage votre contenu. Vous pouvez les organiser par sujet, par date, par objectif ou selon toute autre structure qui vous convient.</p>
+
+          <h3>3. Écrire des mémos</h3>
+          <p>Ouvrez l’onglet Mémos et commencez à écrire des mémos sur la page. Comme les mémos peuvent être déplacés ou copiés plus tard, il n’est pas nécessaire de trop vous soucier de l’organisation parfaite au début.</p>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="edit" class="section">
+        <div class="section-card">
+          <h2>Modifier les mémos</h2>
+          <p>Touchez un mémo pour modifier son contenu. Vous pouvez ainsi ajouter des détails ou corriger rapidement un mémo plus tard.</p>
+          <p>Chaque mémo étant indépendant, PieceNote convient non seulement à la rédaction de longs textes au même endroit, mais aussi à la <strong>gestion de nombreux courts mémos séparés</strong>.</p>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="collapse" class="section">
+        <div class="section-card">
+          <h2>Réduire les mémos</h2>
+          <p>Touchez l’icône en forme de flèche en haut à droite d’un mémo pour réduire ou développer son contenu.</p>
+          <p>Lorsqu’un mémo est réduit, seule sa première ligne est affichée, sur deux lignes maximum. Cette fonction est pratique pour organiser les mémos longs ou ceux dont vous souhaitez habituellement masquer le contenu.</p>
+          <p>L’état réduit ou développé est enregistré et reste inchangé même après la fermeture et le redémarrage de l’application.</p>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="organize" class="section">
+        <div class="section-card">
+          <h2>Organiser les mémos</h2>
+
+          <h3>Sélectionner par appui long</h3>
+          <p>Appuyez longuement sur un mémo pour le sélectionner. Une fois le mémo sélectionné, un panneau d’actions apparaît en bas de l’écran.</p>
+
+          <h3>Déplacer</h3>
+          <p>Vous pouvez déplacer les mémos sélectionnés vers une autre page ou une autre note. C’est utile lorsque vous voulez réorganiser votre contenu plus tard ou lorsque vous avez écrit quelque chose au mauvais endroit.</p>
+
+          <h3>Copier</h3>
+          <p>Vous pouvez copier les mémos sélectionnés vers une autre page ou une autre note. C’est pratique lorsque vous voulez utiliser le même contenu à plusieurs endroits. Le mémo d’origine reste à sa place.</p>
+
+          <h3>Sélection multiple</h3>
+          <p>Lorsqu’un mémo est sélectionné, touchez d’autres mémos pour en sélectionner plusieurs. C’est utile lorsque vous voulez appliquer une action à plusieurs mémos en une seule fois.</p>
+
+          <h3>Fusionner</h3>
+          <p>Si vous sélectionnez au moins deux mémos et choisissez <strong>Fusion</strong>, ils peuvent être regroupés en un seul mémo. C’est pratique lorsque vous voulez transformer plusieurs petits mémos en un mémo plus organisé.</p>
+
+          <h3>Actions sur les pages et les notes</h3>
+          <p>Les pages et les notes peuvent aussi être sélectionnées par appui long. Après les avoir sélectionnées, vous pouvez utiliser le panneau d’actions pour les renommer, les supprimer, les exporter et effectuer d’autres actions disponibles.</p>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="reorder" class="section">
+        <div class="section-card">
+          <h2>Réorganiser les éléments</h2>
+          <p>Vous pouvez changer l’ordre des notes, des pages et des mémos en passant en mode de réorganisation depuis le bouton <strong>Réorganiser</strong>.</p>
+          <ul>
+            <li>Changer l’ordre des notes</li>
+            <li>Changer l’ordre des pages</li>
+            <li>Changer l’ordre des mémos</li>
+          </ul>
+          <p>Le bouton Réorganiser pour les pages et les mémos apparaît dans le panneau d’actions inférieur de l’écran d’accueil. La réorganisation des notes est disponible depuis le menu latéral.</p>
+          <p>Vous pouvez ainsi réarranger votre contenu dans un ordre plus lisible après l’avoir écrit. Cette fonction s’accorde particulièrement bien avec la méthode «&nbsp;écrire d’abord, organiser ensuite&nbsp;».</p>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="export" class="section">
+        <div class="section-card">
+          <h2>Exporter les mémos</h2>
+          <p><strong>L’exportation</strong> vous permet de sortir vos mémos PieceNote sous forme de fichiers. Vous pouvez conserver les fichiers exportés pour les archiver, les ouvrir sur un ordinateur ou dans d’autres applications, ou les partager.</p>
+
+          <h3>Portée de l’exportation</h3>
+          <ul>
+            <li>Exporter une seule page</li>
+            <li>Exporter une note</li>
+            <li>Exporter toutes les notes</li>
+          </ul>
+
+          <h3>Exporter une seule page</h3>
+          <p>Pour exporter une seule page, ouvrez l’<strong>onglet Pages</strong> sur l’écran d’accueil, puis appuyez longuement sur la page et choisissez Exporter dans le panneau d’actions.</p>
+
+          <h3>Exporter une note ou toutes les notes</h3>
+          <p>Pour exporter une note ou toutes les notes, ouvrez l’écran <strong>Exporter</strong> depuis les Réglages. Vous pouvez également exporter une note en appuyant longuement dessus dans le menu latéral.</p>
+
+          <h3>TXT et Markdown</h3>
+          <p><strong>TXT</strong> exporte principalement le texte, sans mise en forme ni styles de texte enrichi. Ce format est utile lorsque vous voulez conserver un simple fichier texte.</p>
+          <p><strong>Markdown</strong> exporte les titres, les listes, les cases à cocher et les autres mises en forme prises en charge au format Markdown. Certains styles, comme le soulignement ou la couleur du texte, ne sont pas conservés.</p>
+
+          <div class="callout">
+            L’exportation est différente de la sauvegarde. Si vous voulez conserver les données de l’application dans un format restaurable plus tard, utilisez la fonction de sauvegarde dans les Réglages.
+          </div>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="inbox" class="section">
+        <div class="section-card">
+          <h2>Utiliser la Boîte de réception</h2>
+          <p>La <strong>Boîte de réception</strong> est un endroit où conserver les mémos que vous n’avez pas encore classés. Elle est séparée de vos notes habituelles et peut être ouverte depuis le menu latéral.</p>
+          <p>Vous pouvez l’utiliser dans les situations suivantes&nbsp;:</p>
+          <ul>
+            <li>Noter rapidement une idée avant de l’oublier</li>
+            <li>Décider plus tard à quelle note elle appartient</li>
+            <li>Conserver des mémos temporaires au même endroit</li>
+          </ul>
+          <p>La Boîte de réception est utile lorsque vous ne voulez pas interrompre votre élan pour réfléchir à l’endroit où placer une idée. Vous pouvez y déposer vos mémos d’abord, puis les déplacer plus tard vers la note ou la page appropriée.</p>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="search" class="section">
+        <div class="section-card">
+          <h2>Rechercher des mémos</h2>
+          <p>La <strong>recherche</strong> vous aide à retrouver le mémo voulu en cherchant dans son contenu. Elle devient particulièrement utile lorsque vos mémos s’accumulent au fil du temps.</p>
+
+          <h3>Ouvrir l’écran de recherche</h3>
+          <p>Vous pouvez ouvrir la recherche depuis l’<strong>icône de recherche</strong> en haut à droite de l’écran d’accueil. Saisissez un mot ou une expression, lancez la recherche, puis les mémos correspondants apparaîtront dans une liste.</p>
+
+          <h3>Ouvrir un mémo depuis les résultats</h3>
+          <p>Touchez un résultat pour accéder directement à la page contenant ce mémo. Cela vous permet de trouver ce dont vous avez besoin sans vérifier chaque page manuellement.</p>
+
+          <h3>Correspondances en surbrillance</h3>
+          <p>Pendant la recherche, les mots correspondants sont affichés en surbrillance. Vous pouvez ainsi repérer plus facilement où le terme recherché apparaît, à la fois dans la liste des résultats et dans le mémo ouvert.</p>
+
+          <div class="callout">
+            Si vous vous souvenez d’une partie de ce que vous avez écrit, mais pas de l’endroit où vous l’avez écrit, la recherche est généralement le moyen le plus rapide de le retrouver.
+          </div>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="recent" class="section">
+        <div class="section-card">
+          <h2>Consulter les mémos récents</h2>
+          <p>Les <strong>Mémos récents</strong> affichent vos mémos récemment mis à jour, du plus récent au plus ancien. Vous pouvez les ouvrir depuis le menu latéral.</p>
+
+          <h3>Reprendre un mémo modifié récemment</h3>
+          <p>Si vous voulez continuer à modifier un mémo que vous avez touché il y a peu, cet écran vous aide à le retrouver rapidement sans remonter note par note et page par page.</p>
+
+          <h3>Voir à quelle note et à quelle page il appartient</h3>
+          <p>Chaque élément affiche également le nom de sa note et celui de sa page. Vous pouvez ainsi comprendre où se trouve le mémo en parcourant la liste.</p>
+
+          <h3>Aller directement depuis la liste</h3>
+          <p>Touchez un élément pour accéder à la page qui contient ce mémo. C’est utile pour reprendre votre travail ou revoir votre activité récente.</p>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="trash" class="section">
+        <div class="section-card">
+          <h2>À propos de la Corbeille</h2>
+          <p>Les mémos supprimés ne disparaissent pas immédiatement. Ils sont déplacés vers la <strong>Corbeille</strong>. Si vous supprimez quelque chose par erreur, vous pouvez le restaurer depuis cet endroit.</p>
+          <p>Les mémos dans la Corbeille sont <strong>supprimés après 30 jours</strong>. Si vous voulez restaurer un mémo supprimé, pensez à vérifier la Corbeille avant ce délai.</p>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="tips" class="section">
+        <div class="section-card">
+          <h2>Conseils d’utilisation</h2>
+
+          <h3>Ne divisez pas trop les pages au début</h3>
+          <p>Si vous créez trop de pages dès le départ, il peut devenir plus difficile de décider où écrire. Il vaut généralement mieux commencer simplement et ajouter des pages seulement lorsque cela devient nécessaire.</p>
+
+          <h3>Utilisez la Boîte de réception en cas d’hésitation</h3>
+          <p>Si vous ne savez pas où placer quelque chose, mettez-le d’abord dans la Boîte de réception. Vous pourrez ainsi continuer à écrire sans interrompre votre réflexion, puis le classer plus tard.</p>
+
+          <h3>Utilisez la recherche comme raccourci</h3>
+          <p>Une fois que vous avez beaucoup de mémos, la recherche peut être plus rapide que l’ouverture des pages une par une. Elle est aussi utile lorsque vous voulez retrouver quelque chose que vous avez écrit auparavant.</p>
+
+          <h3>Reprenez depuis les Mémos récents</h3>
+          <p>Si vous voulez rouvrir un élément que vous avez modifié récemment, les Mémos récents sont un bon point de départ. C’est pratique pour reprendre là où vous vous étiez arrêté.</p>
+
+          <h3>Gardez les mémos courts</h3>
+          <p>Les mémos courts sont plus faciles à déplacer, copier et fusionner. Si vous voulez garder vos notes flexibles, écrire par petits morceaux fonctionne généralement mieux.</p>
+
+          <h3>Réorganisez plus tard</h3>
+          <p>L’ordre dans lequel vous écrivez n’est pas toujours le meilleur ordre pour relire plus tard. Écrivez d’abord librement, puis réorganisez ensuite.</p>
+
+          <h3>Exportez les mémos importants</h3>
+          <p>Si vous voulez conserver des mémos importants en dehors de l’application ou les utiliser dans une autre application, exportez-les au format TXT ou Markdown.</p>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+
+      <section id="summary" class="section">
+        <div class="section-card">
+          <h2>Résumé</h2>
+          <p>PieceNote est une application qui organise les informations sous la forme <strong>Notes → Pages → Mémos</strong>.</p>
+          <ul class="summary-list">
+            <li>Utilisez l’onglet Pages pour consulter les pages</li>
+            <li>Utilisez l’onglet Mémos pour écrire des mémos</li>
+            <li>Utilisez le menu latéral pour changer de note</li>
+            <li>Utilisez la Boîte de réception comme espace temporaire pour les mémos non classés</li>
+            <li>Utilisez la recherche pour trouver le mémo dont vous avez besoin</li>
+            <li>Utilisez les Mémos récents pour rouvrir les contenus récemment mis à jour</li>
+            <li>Organisez plus tard en déplaçant, copiant et réorganisant</li>
+            <li>Exportez vos mémos au format TXT ou Markdown</li>
+          </ul>
+          <p>Une fois habitué à ce fonctionnement, il devient plus facile de continuer à écrire et à organiser vos idées sans stress.</p>
+        
+
+          <p class="back-to-toc"><a href="#toc">Retour au sommaire</a></p></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© PieceNote</div>
+  </footer>
+</body>
+</html>
